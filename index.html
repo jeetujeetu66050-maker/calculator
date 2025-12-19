@@ -2,99 +2,94 @@
 <html>
 <head>
 	<style>
-body{
-			margin: 0;
-			padding: 0;
-			align-items: center;
+		body{
+			background-color: rgba(0, 0, 20, 2);
 			justify-content: center ;
-			display: flex;
-			align-content: center ;
+			align-items: center ;
+			display:flex;
+			color: white;
 			height: 100vh;
-			background: linear-gradient(120deg, #667eea, #764ba2)}
-		input{
-			width:100%;
-			padding: 10px;
-			border-radius: 6px;1
-			border:1px solid #ccc;
-			outline: none;
-			padding-right: 5px;}
+		}
 		.box{
-			border:2px solid white ;
-			padding: 25px;
-			background: white;
-			border-radius: 20px;
-			width: 380px;
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-			text-align: center ;}
-		input:focus{
-			border-color:#000  ;}
-		h1{margin-bottom: 20px;
-			color: #333;
-			font-weight: bold;
-			font-family:arial;
-			font-size: 24px;}
-		button{
-			width: 90%;
-		height: 35px;
-			background-color: rgba(0, 0, 200, 0.7);
-		border-radius: 6px;
-		color: white;}
-		button:hover{
-			background-color: rgba(0, 0, 255, 1.0);}
-#output{margin-top: 15px;
-font-size: 18px;
- animation: floatGlow 2s ease-in-out infinite;
-        }
- @keyframes floatGlow {
-            0% {
-                transform: translateY(0);
-                text-shadow: 0 0 5px currentColor;}
-            50% {
-                transform: translateY(-10px);
-                text-shadow: 0 0 20px currentColor;}
-            100% {
-                transform: translateY(0);
-                text-shadow: 0 0 5px currentColor;}
+			background-color: black;
+			padding: 10px;
+			width: 275px;
+			border-radius:10px;
+			box-shadow: 0 0  10px cyan;
+			animation: zoom 2s infinite alternate ;
+		}
+@keyframes zoom{
+	from{transform: scale(1);}
+	to{transform: scale(1.04);
+	} 
+	 }
+input{
+	width: 100%;
+	height:50px;
+	margin-bottom: 6px;
+	border-radius: 15px;
+	border:none;
+	font-size: 25px ;
+	text-align: right;
+}
+.answer{
+    background-color:#e5e7eb;
+    font-width:bolder;
+}
+button{
+	margin-bottom: 10px;
+	width:50px;
+	font-size: 32px;
+	height: 50px;
+	display:inline;
+	margin-left:12px;
+	border-radius: 10px;
+}
 </style>
-	<title> Voting form create by java script</title>
+	<title>advance calculator</title>
 </head>
 <body>
-<div class="box" id="formbox" style="display:none";>
-<h1>User Check </h1>
-<input type="text"placeholder="Enter Your Name" id="username"><br><br>
-<input type="number" placeholder="Enter Your Age  "id="age"><BR><BR>
-<button onclick="checkData()">Submit Data</button><br>
-<div id="output"></div>
-</div>
+	<div class="box">
+		<input type="text" id="screen" readonly class="display"placeholder="Enter"><br>
+		<input type="text" readonly  placeholder="Answer" id="answer"><br><br>
+        <button style="background-color: orange;" onclick="back()">❌</button>
+        <button style="background-color: red; color: white;" onclick="clr()">C</button>
+        <button style="background-color: skyblue;" onclick="add('/')">/</button>
+        <button style="background-color: skyblue;" onclick="add('*')">*</button>
+        <button  onclick="add(7)">7</button>
+        <button onclick="add(8)" >8</button>
+        <button  onclick="add(9)">9</button>
+        <button  onclick="add('-')"style="background-color: skyblue;">-</button>
+        <button  onclick="add(4)">4</button>
+        <button  onclick="add(5)">5</button>
+        <button  onclick="add(6)">6</button>
+        <button onclick="add('+')"style="background-color:skyblue;">+</button>
+        <button  onclick="add(1)">1</button>
+        <button  onclick="add(2)">2</button>
+        <button  onclick="add(3)">3</button>
+        <button  onclick="add(0)">0</button>
+        <button onclick="add('.')" >.</button>
+        <button style="width:180px; background-color:green;" onclick="calc()">=</button>
+	</div>
 <script>
-	/* country prompt */
-var con = prompt("Enter Your Country Name");
 
-if(con && con.toLowerCase() === "india"){
-    alert("✅ You are Indian. Form opened");
-    document.getElementById("formbox").style.display = "block";
-}
-else{
-    alert("❌ Only Indian users allowed");
-}
+     let screen = document.getElementById("screen");
 
-	function checkData() {
-var user=document.getElementById("username").value;
-var age=Number(document.getElementById("age").value);
-var output=document.getElementById("output");
-if(user==="")  {
-	output.style.color="red";
-	output.innerHTML="❌ Name Required ";
+     let answer = document.getElementById("answer");
+
+   function add(a){
+        screen.value = screen.value + a;
 }
-else if(age<=0){
-	output.style.color="red";
-	output.innerHTML="❌ Valid age enter karo !";}
-else if(age>=18){
-	output.style.color="green";
-	output.innerHTML="✅Welcome  "+user+"   You are eligible !";}
-else{
-	output.style.color="orange";
-output.innerHTML="⚠️ Sorry"+name+"You are not eligible !";}}
+   function clr(){
+        screen.value = "";
+        answer.value = "";
+}
+   function back(){
+        screen.value = screen.value.slice(0,-1 );
+}
+   function calc(){
+      answer.value = eval(screen.value);
+}
 </script>
 </body>
 </html>
